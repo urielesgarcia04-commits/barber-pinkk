@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbería Imperial | Reservas en Línea</title>
+    
+    <!-- Iconos opcionales de FontAwesome para darle mejor estilo -->
+    <link rel="stylesheet" href="pag.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head> 
+<body>
+<style>/* VARIABLES DE DISEÑO (Colores con toque oscuro y dorado elegante) */
+:root {
+    --bg-dark: #121212;
+    --bg-card: #1c1c1e;
+    --primary: #d4af37; /* Dorado */
+    --primary-hover: #bda031;
+    --text-light: #ffffff;
+    --text-muted: #a1a1a6;
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* RESET GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: var(--font-main);
+    line-height: 1.6;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background-color: rgba(18, 18, 18, 0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #2c2c2e;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+.nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.nav-links .btn-nav {
+    background-color: var(--primary);
+    color: var(--bg-dark);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.nav-links .btn-nav:hover {
+    background-color: var(--primary-hover);
+    color: var(--text-light);
+}
+
+/* HERO SECTION */
+.hero {
+    height: 70vh;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=1200') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero-content h2 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: var(--text-light);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--bg-dark);
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    text-transform: uppercase;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+/* SECCIÓN SERVICIOS */
+.services {
+    padding: 80px 8%;
+    background-color: var(--bg-dark);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary);
+    margin: 10px auto 0;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: var(--bg-card);
+    padding: 40px 30px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #2c2c2e;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.service-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.price {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+/* SECCIÓN FORMULARIO DE RESERVAS */
+.booking {
+    padding: 80px 8%;
+    background-color: #1a1a1a;
+}
+
+.booking-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: var(--bg-card);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid #2c2c2e;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.form-group input,
+.form-group select {
+    background-color: var(--bg-dark);
+    border: 1px solid #3a3a3c;
+    padding: 12px;
+    border-radius: 6px;
+    color: var(--text-light);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary);
+}
+
+.btn-submit {
+    background-color: var(--primary);
+    color: var(--bg-dark);
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: var(--primary-hover);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 30px;
+    background-color: var(--bg-dark);
+    border-top: 1px solid #2c2c2e;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* RESPONSIVO (DISEÑO PARA CELULARES) */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .nav-links a {
+        margin: 0 10px;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .booking-container {
+        padding: 20px;
+    }
+}</style>
+    <!-- NAV / ENCABEZADO -->
+    <header class="navbar">
+        <div class="logo">
+            <h1>BARBER<span>IMPERIAL</span></h1>
+        </div>
+        <nav class="nav-links">
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#reservar" class="btn-nav">Reservar Cita</a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION (INICIO) -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h2>Estilo, Precisión y Tradición</h2>
+            <p>No solo cortamos cabello, perfeccionamos tu estilo. Agenda tu cita en segundos.</p>
+            <a href="#reservar" class="btn-primary">Agendar Ahora</a>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE SERVICIOS -->
+    <section id="servicios" class="services">
+        <h2 class="section-title">Nuestros Servicios</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fa-solid fa-scissors card-icon"></i>
+                <h3>Corte Clásico / Moderno</h3>
+                <p>Asesoría de imagen, lavado y peinado con productos premium.</p>
+                <span class="price">$15.00</span>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-razor-blade card-icon"></i> <!-- Nota: Reemplazable por cualquier icono de barba -->
+                <h3>Perfilado de Barba</h3>
+                <p>Toalla caliente, afeitado tradicional a navaja y aceites hidratantes.</p>
+                <span class="price">$10.00</span>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-sparkles card-icon"></i>
+                <h3>Combo Imperial</h3>
+                <p>Corte de cabello, barba, cejas y mascarilla facial exfoliante.</p>
+                <span class="price">$22.00</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE RESERVAS (EL FORMULARIO) -->
+    <section id="reservar" class="booking">
+        <div class="booking-container">
+            <h2 class="section-title">Reserva tu Turno</h2>
+            <p class="section-subtitle">Completa tus datos y selecciona tu horario ideal.</p>
+            
+            <form class="booking-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Número de Teléfono</label>
+                    <input type="tel" id="telefono" placeholder="Ej. 3001234567" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="servicio">Selecciona el Servicio</label>
+                        <select id="servicio" required>
+                            <option value="" disabled selected>Elegir servicio...</option>
+                            <option value="corte">Corte Clásico - $15.00</option>
+                            <option value="barba">Perfilado de Barba - $10.00</option>
+                            <option value="combo">Combo Imperial - $22.00</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="barbero">Elige tu Barbero</label>
+                        <select id="barbero" required>
+                            <option value="" disabled selected>Elegir barbero...</option>
+                            <option value="alex">Alex (Especialista en Degradados)</option>
+                            <option value="carlos">Carlos (Maestro Barber Tradicional)</option>
+                            <option value="mateo">Mateo (Estilo Urbano & Diseños)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fecha">Fecha</label>
+                        <input type="date" id="fecha" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hora">Hora Disponible</label>
+                        <select id="hora" required>
+                            <option value="" disabled selected>Ver horarios...</option>
+                            <option value="09:00">09:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="14:00">02:00 PM</option>
+                            <option value="15:00">03:00 PM</option>
+                            <option value="16:00">04:00 PM</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">Confirmar Reserva</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Barbería Imperial. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
