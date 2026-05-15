@@ -210,6 +210,40 @@ function cargarCitas() {
     // Aquí consultarías a Firebase
     // Por cada cita encontrada, crearías una fila <tr> en tu tabla 
     // usando document.createElement('tr')
+    
+    // 1. Hacer que los botones del menú funcionen al hacer clic
+    const menuItems = document.querySelectorAll('.nav-item');
+    
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            // Quitamos la clase 'active' de todos
+            menuItems.forEach(i => i.classList.remove('active'));
+            // Se la ponemos al que clickeamos
+            item.classList.add('active');
+            
+            const seccion = item.querySelector('span').innerText;
+            console.log("Cambiando a la sección: " + seccion);
+            // Aquí podrías ocultar o mostrar diferentes partes del panel
+        });
+    });
+
+    // 2. Hacer que el estado de las citas cambie al hacer clic (Simulación)
+    const badges = document.querySelectorAll('.status-badge');
+    badges.forEach(badge => {
+        badge.style.cursor = "pointer";
+        badge.addEventListener('click', () => {
+            if(badge.innerText === "Confirmada") {
+                badge.innerText = "Finalizada";
+                badge.style.backgroundColor = "#555";
+            } else {
+                badge.innerText = "Confirmada";
+                badge.style.backgroundColor = "var(--success)";
+            }
+        });
+    });
+
 }</script>
+
 </body>
+
 </html>
